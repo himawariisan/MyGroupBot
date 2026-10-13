@@ -4,5 +4,8 @@ venv/
 .env
 config.py
 
+users.db
+*.db
+
 __pycache__/
 *.pyc

@@ -14,11 +14,14 @@ from keyboards import (
     users_db    
 )
 
+from database import init_db
+
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
+
 
 @dp.message(Command(commands=["start"]))
 async def start_command(message: types.Message):
@@ -70,9 +73,9 @@ async def process_back_to_days(callback: types.CallbackQuery):
 
 
 async def main():
+    init_db()
     logging.basicConfig(level=logging.INFO)
     await dp.start_polling(bot)
-
 
 if __name__ == "__main__":
     asyncio.run(main())
