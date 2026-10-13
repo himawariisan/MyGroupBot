@@ -15,6 +15,7 @@ from keyboards import (
 )
 
 from database import init_db
+from commands import BOT_COMMANDS
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -74,6 +75,8 @@ async def process_back_to_days(callback: types.CallbackQuery):
 
 async def main():
     init_db()
+    await bot.set_my_commands(BOT_COMMANDS)
+    
     logging.basicConfig(level=logging.INFO)
     await dp.start_polling(bot)
 
