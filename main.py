@@ -20,11 +20,7 @@ from commands import BOT_COMMANDS
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-from aiogram.client.session.aiohttp import AiohttpSession
-proxy_url = "http://proxy.server:3128"
-session = AiohttpSession(proxy=proxy_url)
-
-bot = Bot(token=BOT_TOKEN, session=session)
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
