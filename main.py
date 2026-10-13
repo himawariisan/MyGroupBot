@@ -20,7 +20,11 @@ from commands import BOT_COMMANDS
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-bot = Bot(token=BOT_TOKEN)
+from aiogram.client.session.aiohttp import AiohttpSession
+session = AiohttpSession(proxy="http://proxy.server:3128")
+bot = Bot(token=BOT_TOKEN, session=session)
+
+
 dp = Dispatcher()
 
 
@@ -76,7 +80,7 @@ async def process_back_to_days(callback: types.CallbackQuery):
 async def main():
     init_db()
     await bot.set_my_commands(BOT_COMMANDS)
-    
+
     logging.basicConfig(level=logging.INFO)
     await dp.start_polling(bot)
 
